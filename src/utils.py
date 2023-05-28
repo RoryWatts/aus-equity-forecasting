@@ -1,6 +1,7 @@
 import datetime
 from dateutil.relativedelta import relativedelta
 
+
 def clean_handler(ledger):
     """
     Clean ledgers.
