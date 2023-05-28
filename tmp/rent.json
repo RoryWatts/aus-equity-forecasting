@@ -1,0 +1,35 @@
+{
+    "type": "rental",
+    "costs": [
+        {
+            "type": "bond"
+        },
+        {
+            "type": "rental",
+            "value": 370,
+            "period": "week",
+            "account": "expense"
+        },
+        {
+            "type": "utility",
+            "description": "internet",
+            "value": 104,
+            "period": "month",
+            "account": "expense"
+        },
+        {
+            "type": "utility",
+            "description": "electricity",
+            "value": 250,
+            "period": "quarter",
+            "account": "expense"
+        },
+        {
+            "type": "utility",
+            "description": "gas",
+            "value": 250,
+            "period": "quarter",
+            "account": "expense"
+        }
+    ]
+}

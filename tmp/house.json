@@ -1,0 +1,56 @@
+{
+    "type": "home",
+    "costs": [
+        {
+            "type": "stamp duty"
+        },
+        {
+            "type": "settlement fee",
+            "value": 3000,
+            "period": "once"
+        },
+        {
+            "type": "deposit",
+            "value": 200000,
+            "account": "asset"
+        },
+        {
+            "type": "mortgage",
+            "rate": 0.057
+        },
+        {
+            "type": "maintenance",
+            "value": 200,
+            "period": "week",
+            "account": "expense"
+        },
+        {
+            "type": "utility",
+            "description": "internet",
+            "value": 104,
+            "period": "month",
+            "account": "expense"
+        },
+        {
+            "type": "utility",
+            "description": "electricity",
+            "value": 250,
+            "period": "quarter",
+            "account": "expense"
+        },
+        {
+            "type": "utility",
+            "description": "gas",
+            "value": 250,
+            "period": "quarter",
+            "account": "expense"
+        }
+        {
+            "type": "utility",
+            "description": "water",
+            "value": 250,
+            "period": "quarter",
+            "account": "expense"
+        }
+    ]
+}

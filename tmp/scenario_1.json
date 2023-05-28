@@ -1,0 +1,42 @@
+{
+    "metadata": {
+        "description": "test scenario"
+    },
+    "runtime": {
+        "start_date": "2023-05-28",
+        "end_date": "2024-05-29"
+    },
+    "assets": [
+        {
+            "type": "cash",
+            "value": 210000
+        }
+    ],
+    "expenses": [
+        {
+            "name": "rent",
+            "value": 370,
+            "period": "weekly",
+            "ends": "2023-07-22"
+        }
+    ],
+    "liabilities": [],
+    "revenues": [
+        {
+            "name": "salary",
+            "value": 12000,
+            "period": "monthly"
+        }
+    ],
+    "purchases": [
+        {
+            "type": "property",
+            "purchase_price": 810000,
+            "deposit": 210000,
+            "interest_rate": 0.057,
+            "purchase_date": "2023-07-22",
+            "mortgage_term": 30,
+            "repayment_period": "monthly"
+        }
+    ]
+}
