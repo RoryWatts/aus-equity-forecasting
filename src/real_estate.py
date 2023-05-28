@@ -1,3 +1,6 @@
+from . import utils, ledger
+from dateutil.relativedelta import relativedelta
+
 def calculate_total_repayments(n, m):
     """
     Calculate the total repayments for a mortgage.
@@ -144,3 +147,76 @@ def calculate_stamp_duty(price, fhog=False, new=False):
         duty += 20 + (price - 200_000) / 100_000 * 100
 
     return duty
+
+def property_handler(config, start_date, end_date):
+    records = []
+    records.append(
+        create_stamp_duty_record(
+            purchase_price=config["purchase_price"], 
+            purchase_date=utils.validate_datetime(config["purchase_date"])
+            )
+        )
+    records.append(
+        create_deposit_record(
+            config["deposit"], 
+            config["purchase_date"]
+            )
+        )
+    records += create_mortgage_repayment_records(
+        debt=config["purchase_price"] - config["deposit"],
+        repayment_period=config["repayment_period"],
+        interest_rate=config["interest_rate"],
+        mortgage_term=config["mortgage_term"],
+        purchase_date=utils.validate_datetime(config["purchase_date"])
+    )
+
+    return records
+
+def create_stamp_duty_record(purchase_price, purchase_date):
+    stamp_duty = calculate_stamp_duty(purchase_price)
+    record = ledger.create_record(
+            description=f"Stamp Duty",
+            debit="expenses",
+            credit="assets",
+            amount=stamp_duty,
+            date=purchase_date
+        )
+    return record
+
+def create_deposit_record(deposit, purchase_date):
+    record = ledger.create_record(
+        description=f"Deposit for Property",
+        debit="expenses",
+        credit="assets",
+        amount=deposit,
+        date=purchase_date
+    )
+    return record
+
+def create_mortgage_repayment_records(
+        debt,
+        repayment_period,
+        interest_rate,
+        mortgage_term,
+        purchase_date
+    ):
+    repayment_int = utils.time_strings_to_int(repayment_period)
+    repayments = calculate_repayments(
+        debt, 
+        calculate_beta(interest_rate, repayment_int),
+        calculate_total_repayments(repayment_int, mortgage_term)
+        )
+    last_payment = relativedelta(years=mortgage_term) + purchase_date
+    payment_schedule = utils.calculate_dates(purchase_date, repayment_period, last_payment)
+    records = []
+    for date in payment_schedule:
+        records.append(
+            ledger.create_record(
+                description=f"Repayment for Property",
+                debit="expenses",
+                credit="assets",
+                amount=repayments,
+                date=date
+            )
+        )
+    return records

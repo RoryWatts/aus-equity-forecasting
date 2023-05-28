@@ -17,7 +17,28 @@ def clean_handler(ledger):
     """
     ledger = clean_datetimes(ledger)
     ledger = clean_floats(ledger)
+    ledger = sort_ledger(ledger)
     return ledger
+
+
+def sort_ledger(ledger):
+    """
+    Sort Ledgers by datetime.
+
+    Parameters
+    ----------
+    ledger : list
+        List of transactions.
+
+    Returns
+    -------
+    ledger : list
+        List of transactions.
+    """
+    ledger = sorted(ledger, key=lambda k: k["date"])
+    return ledger
+
+
 
 def clean_datetimes(ledger):
     """
