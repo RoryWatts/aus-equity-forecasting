@@ -30,3 +30,21 @@ def create_record(description, debit, credit, amount, date):
         "amount": amount,
         "date": utils.validate_datetime(date),
     }
+
+
+def calculate_equity(ledger):
+    assets = 0.0
+    liabilities = 0.0
+
+    for transaction in ledger:
+        amount = float(transaction['amount'].replace(',', ''))
+        if transaction['debit'] == 'assets':
+            assets += amount
+        elif transaction['debit'] == 'liabilities':
+            liabilities -= amount
+        if transaction['credit'] == 'assets':
+            assets -= amount
+        elif transaction['credit'] == 'liabilities':
+            liabilities += amount
+            
+    return assets - liabilities
