@@ -4,28 +4,33 @@
     },
     "runtime": {
         "start_date": "2023-05-28",
-        "end_date": "2024-05-29"
+        "end_date": "2060-05-29"
     },
     "assets": [
         {
-            "type": "cash",
-            "value": 210000
+            "description": "cash account",
+            "amount": 250000
+        }
+    ],
+    "liabilities": [
+        {
+            "description": "HECS debt",
+            "amount": 40000
+        }
+    ],
+    "revenues": [
+        {
+            "description": "salary",
+            "amount": 12000,
+            "period": "monthly"
         }
     ],
     "expenses": [
         {
-            "name": "rent",
-            "value": 370,
+            "description": "rent",
+            "amount": 370,
             "period": "weekly",
             "ends": "2023-07-22"
-        }
-    ],
-    "liabilities": [],
-    "revenues": [
-        {
-            "name": "salary",
-            "value": 12000,
-            "period": "monthly"
         }
     ],
     "purchases": [
